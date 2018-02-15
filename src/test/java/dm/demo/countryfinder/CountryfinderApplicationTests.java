@@ -1,6 +1,5 @@
-package dm.demo;
+package dm.demo.countryfinder;
 
-import dm.demo.countryfinder.CountryfinderApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
