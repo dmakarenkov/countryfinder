@@ -1,7 +1,6 @@
 package dm.demo.countryfinder.service;
 
 import io.reactivex.Observable;
-import io.reactivex.schedulers.Schedulers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -20,12 +19,11 @@ public class RestTemplateService {
     private RestTemplate restTemplate;
 
     /**
-     * Execution of {@link RestTemplate#exchange(String, HttpMethod, HttpEntity, Class, Object...)} in a separate thread.
+     * Wrapper for {@link RestTemplate#exchange(String, HttpMethod, HttpEntity, Class, Object...)} to return observable.
      */
-    public <T> Observable<T> exchangeAsync(String url, HttpMethod method,
-                                           HttpEntity<String> httpEntity, Class<T> responseType) {
+    public <T> Observable<T> exchange(String url, HttpMethod method,
+                                      HttpEntity<String> httpEntity, Class<T> responseType) {
         return Observable.just(restTemplate.exchange(url, method, httpEntity, responseType))
-                .subscribeOn(Schedulers.newThread())
                 .map(ResponseEntity::getBody);
     }
 }

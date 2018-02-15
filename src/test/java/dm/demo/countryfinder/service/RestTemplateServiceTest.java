@@ -49,7 +49,7 @@ public class RestTemplateServiceTest {
                 restTemplate.exchange(url, HttpMethod.GET, entity, RestTemplateResult.class))
                 .thenReturn(ResponseEntity.ok(new RestTemplateResult(resultData)));
 
-        Observable<RestTemplateResult> observable = restTemplateService.exchangeAsync(url,
+        Observable<RestTemplateResult> observable = restTemplateService.exchange(url,
                 HttpMethod.GET, entity, RestTemplateResult.class);
         RestTemplateResult result = observable.blockingFirst();
         assertThat(result).isEqualTo(new RestTemplateResult(resultData));

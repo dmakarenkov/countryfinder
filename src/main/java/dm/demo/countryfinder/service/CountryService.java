@@ -34,7 +34,7 @@ public class CountryService {
         log.debug("Searching neighbours for '{}'", isoCode);
 
         String url = getCountryBordersRequestUrl(isoCode);
-        return restTemplateService.exchangeAsync(url, HttpMethod.GET, getHttpEntity(), CountryData.class)
+        return restTemplateService.exchange(url, HttpMethod.GET, getHttpEntity(), CountryData.class)
                 .map(CountryData::getBorders);
     }
 

@@ -41,7 +41,7 @@ public class CountryServiceTest {
         String isoCode = "ISO1";
         CountryData targetData = new CountryData(Arrays.asList("ISO2", "ISO3", "ISO4"));
 
-        when(restTemplateService.exchangeAsync(
+        when(restTemplateService.exchange(
                 countryService.getCountryBordersRequestUrl(isoCode), HttpMethod.GET, countryService.getHttpEntity(), CountryData.class))
                 .thenReturn(Observable.just(targetData));
 

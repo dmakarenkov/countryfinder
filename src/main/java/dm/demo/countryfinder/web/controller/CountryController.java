@@ -3,6 +3,7 @@ package dm.demo.countryfinder.web.controller;
 import dm.demo.countryfinder.service.CountryService;
 import dm.demo.countryfinder.web.dto.CountryPairDTO;
 import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,7 +51,10 @@ public class CountryController {
 
         List<Observable<List<CountryPairDTO>>> observables = new ArrayList<>();
         neighbours.forEach(neighbour -> {
-            Observable<List<CountryPairDTO>> observable = countryService.findNeighbours(neighbour)
+            // processing of each neighbour in a separate thread
+            Observable<List<CountryPairDTO>> observable = Observable.just(neighbour)
+                    .subscribeOn(Schedulers.newThread())
+                    .flatMap(countryService::findNeighbours)
                     .map(subNeighbours -> buildPairs(neighbour, subNeighbours, neighbours));
             observables.add(observable);
         });
