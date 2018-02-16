@@ -1,26 +1,26 @@
 <form class="country-neighbour-form">
-  <div class="greetings-label">
-    Please enter ISO code below to find neighbours:
+  <div class="title-label">
+    {{'COUNTRY.TITLE' | translate}}
   </div>
 
   <div>
-    <mat-form-field class="full-width">
+    <mat-form-field class="iso-input">
       <input matInput
              name="isoCode"
              [(ngModel)]="isoCode"
-             placeholder="ISO code">
+             placeholder="{{'COUNTRY.INPUT.ISO_PLACEHOLDER' | translate}}">
     </mat-form-field>
   </div>
-  <div>
+  <div class="search-button">
     <button mat-raised-button
             color="primary"
             (click)="findNeighbours()">
-      Search
+      {{'COUNTRY.BUTTON.SEARCH' | translate}}
     </button>
   </div>
 
   <div class="load-neighbours-error-label" *ngIf="isError">
-    Server error occurred
+    {{'COUNTRY.LABEL.SERVER_ERROR' | translate}}
   </div>
 
   <div class="table-container mat-elevation-z8">
@@ -29,15 +29,14 @@
       <mat-spinner *ngIf="isLoading"></mat-spinner>
     </div>
 
-    <mat-table #table [dataSource]="neighbourPairs" class="neighbours-table"
-               matSort>
+    <mat-table #table [dataSource]="neighbourPairs" class="neighbours-table">
       <ng-container matColumnDef="countryLeft">
-        <mat-header-cell *matHeaderCellDef> Country 1 </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'COUNTRY.TABLE.COUNTRY_1' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let countryPair"> {{countryPair.left}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="countryRight">
-        <mat-header-cell *matHeaderCellDef> Country 2 </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> {{'COUNTRY.TABLE.COUNTRY_2' | translate}} </mat-header-cell>
         <mat-cell *matCellDef="let countryPair"> {{countryPair.right}} </mat-cell>
       </ng-container>
 

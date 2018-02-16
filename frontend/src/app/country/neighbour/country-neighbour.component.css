@@ -1,16 +1,13 @@
-.greetings-label {
+.title-label {
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
 .country-neighbour-form {
   min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.full-width {
+  max-width: 700px;
   width: 100%;
 }
 
@@ -18,12 +15,15 @@
   display: flex;
   flex-direction: column;
   min-width: 300px;
-  margin-top: 20px;
 }
 
-.mat-form-field {
+.iso-input {
   font-size: 14px;
   width: 100%;
+}
+
+.search-button {
+  margin-bottom: 15px;
 }
 
 .neighbours-table {
@@ -45,7 +45,7 @@
 }
 
 .load-neighbours-error-label {
-  color: #980000;
-  max-width: 360px;
-  text-align: center;
+  color: #ff0000;
+  font-weight: bold;
+  margin-bottom: 15px;
 }

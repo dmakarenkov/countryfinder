@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { ICountryPair } from './country-pair';
+import { ICountryPair } from './country';
 import { HttpService } from '../common/remote/http.service';
 
 import 'rxjs/add/operator/map';

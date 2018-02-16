@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StringUtils } from '../../common/util/string-utils';
-import { ICountryPair } from '../country-pair';
+import { ICountryPair } from '../country';
 import { CountryService } from '../country.service';
 import { MatTableDataSource } from '@angular/material';
 

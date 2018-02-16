@@ -1,0 +1,18 @@
+{
+  "COUNTRY": {
+    "TITLE": "Please enter ISO code below to find neighbours:",
+    "LABEL": {
+      "SERVER_ERROR": "Server error occurred"
+    },
+    "INPUT": {
+      "ISO_PLACEHOLDER": "ISO code"
+    },
+    "TABLE": {
+      "COUNTRY_1": "Country 1",
+      "COUNTRY_2": "Country 2"
+    },
+    "BUTTON": {
+      "SEARCH": "Search"
+    }
+  }
+}
