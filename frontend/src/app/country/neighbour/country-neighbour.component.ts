@@ -34,7 +34,6 @@ export class CountryNeighbourComponent implements OnInit {
     this.countryService.getNeighbours(this.isoCode.trim())
       .subscribe(
         (countryPairs: ICountryPair[]) => {
-          console.log('Countries retrieved');
           this.neighbourPairs.data = countryPairs;
           this.isLoading = false;
         },
