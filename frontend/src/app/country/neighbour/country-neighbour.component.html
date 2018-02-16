@@ -1,0 +1,48 @@
+<form class="country-neighbour-form">
+  <div class="greetings-label">
+    Please enter ISO code below to find neighbours:
+  </div>
+
+  <div>
+    <mat-form-field class="full-width">
+      <input matInput
+             name="isoCode"
+             [(ngModel)]="isoCode"
+             placeholder="ISO code">
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-raised-button
+            color="primary"
+            (click)="findNeighbours()">
+      Search
+    </button>
+  </div>
+
+  <div class="load-neighbours-error-label" *ngIf="isError">
+    Server error occurred
+  </div>
+
+  <div class="table-container mat-elevation-z8">
+    <div class="table-loading-shade"
+         *ngIf="isLoading">
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
+    </div>
+
+    <mat-table #table [dataSource]="neighbourPairs" class="neighbours-table"
+               matSort>
+      <ng-container matColumnDef="countryLeft">
+        <mat-header-cell *matHeaderCellDef> Country 1 </mat-header-cell>
+        <mat-cell *matCellDef="let countryPair"> {{countryPair.left}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="countryRight">
+        <mat-header-cell *matHeaderCellDef> Country 2 </mat-header-cell>
+        <mat-cell *matCellDef="let countryPair"> {{countryPair.right}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</form>

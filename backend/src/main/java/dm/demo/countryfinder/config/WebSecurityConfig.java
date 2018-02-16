@@ -12,10 +12,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .anyRequest().authenticated()
+        // TODO: authorization currently disabled because of missing authorization logic on frontend
+        http
+                .authorizeRequests()
+                .anyRequest().permitAll()/*.authenticated()
                 .and()
-                .httpBasic();
+                .httpBasic()*/;
     }
 
     @Override
