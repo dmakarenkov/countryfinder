@@ -9,14 +9,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
+
 /**
  * RestTemplate adapter to return observables.
  */
 @Slf4j
 @Service
 public class RestTemplateService {
-    @Autowired
     private RestTemplate restTemplate;
+
+    @PostConstruct
+    private void init() {
+        this.restTemplate = new RestTemplate();
+    }
 
     /**
      * Wrapper for {@link RestTemplate#exchange(String, HttpMethod, HttpEntity, Class, Object...)} to return observable.

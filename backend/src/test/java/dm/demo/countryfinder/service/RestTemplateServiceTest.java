@@ -5,12 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -22,19 +22,16 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 public class RestTemplateServiceTest {
-    @TestConfiguration
-    static class RestTemplateServiceTestContextConfiguration {
-        @Bean
-        public RestTemplateService restTemplateService() {
-            return new RestTemplateService();
-        }
-    }
-
-    @MockBean
+    @Mock
     private RestTemplate restTemplate;
 
-    @Autowired
+    @InjectMocks
     private RestTemplateService restTemplateService;
+
+    @Before
+    public void initMocks() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     /**
      * Test retrieval of rest-data.

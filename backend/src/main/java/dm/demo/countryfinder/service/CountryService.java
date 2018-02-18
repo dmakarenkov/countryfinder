@@ -38,11 +38,11 @@ public class CountryService {
                 .map(CountryData::getBorders);
     }
 
-    String getCountryBordersRequestUrl(String isoCode) {
+    private String getCountryBordersRequestUrl(String isoCode) {
         return String.format(COUNTRY_BORDERS_URL, isoCode);
     }
 
-    HttpEntity<String> getHttpEntity() {
+    private HttpEntity<String> getHttpEntity() {
         // workaround to avoid "403: Forbidden" error by setting user-agent to header
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));

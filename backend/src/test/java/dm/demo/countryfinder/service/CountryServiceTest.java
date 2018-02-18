@@ -2,12 +2,14 @@ package dm.demo.countryfinder.service;
 
 import dm.demo.countryfinder.service.model.CountryData;
 import io.reactivex.Observable;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
+import org.mockito.InjectMocks;
+import org.mockito.Matchers;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -19,19 +21,16 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 public class CountryServiceTest {
-    @TestConfiguration
-    static class CountryServiceTestContextConfiguration {
-        @Bean
-        public CountryService countryService() {
-            return new CountryService();
-        }
-    }
-
-    @MockBean
+    @Mock
     private RestTemplateService restTemplateService;
 
-    @Autowired
+    @InjectMocks
     private CountryService countryService;
+
+    @Before
+    public void initMocks() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     /**
      * Test retrieval of neighbours by specified iso code.
@@ -42,7 +41,7 @@ public class CountryServiceTest {
         CountryData targetData = new CountryData(Arrays.asList("ISO2", "ISO3", "ISO4"));
 
         when(restTemplateService.exchange(
-                countryService.getCountryBordersRequestUrl(isoCode), HttpMethod.GET, countryService.getHttpEntity(), CountryData.class))
+                Matchers.anyString(), Matchers.eq(HttpMethod.GET), Matchers.any(HttpEntity.class), Matchers.eq(CountryData.class)))
                 .thenReturn(Observable.just(targetData));
 
         Observable<List<String>> observable = countryService.findNeighbours(isoCode);
